@@ -18,7 +18,7 @@ export default function Main({onEditProfile, onEditAvatar, onAddPlace, onCardCli
 
         cards.forEach(l => l._id === profile._id)
         setCards(cards)
-      });
+      }).catch(err => console.log(`Ошибка ${err}`));
   },[])
 
   return (
