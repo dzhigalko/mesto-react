@@ -2,9 +2,8 @@ import Header from "./Header/Header";
 import Main from "./Main/Main";
 import Footer from "./Footer/Footer";
 import PopupWithForm from "./PopupWithForm/PopupWithForm";
-import PopupImage from "./PopupImage/PopupImage";
+import ImagePopup from "./ImagePopup/ImagePopup";
 import {useState} from 'react';
-import Card from "./Card/Card";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
@@ -130,7 +129,7 @@ function App() {
         titleButton='Да'
       />
 
-      <PopupImage
+      <ImagePopup
         card={selectedCard}
         isOpen={isImagePopup}
         onClose={closeAllPopups}

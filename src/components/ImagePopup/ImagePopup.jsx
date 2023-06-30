@@ -1,9 +1,9 @@
-export default function PopupImage({card, isOpen, onClose}) {
+export default function ImagePopup({card, isOpen, onClose}) {
   return (
     <div className={`popup popup_type_image-full ${isOpen && 'popup_opened'}`}>
       <figure className="popup__image-container">
         <button
-          className="popup__close-button popup__close-button_type_image-full"
+          className="popup__close-button"
           type="button"
           aria-label="Закрыть"
           onClick={onClose}

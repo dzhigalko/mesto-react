@@ -18,7 +18,6 @@ export default function Main({onEditProfile, onEditAvatar, onAddPlace, onCardCli
 
         cards.forEach(l => l._id === profile._id)
         setCards(cards)
-        console.log('test')
       });
   },[])
 
