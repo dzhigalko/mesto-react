@@ -1,25 +1,10 @@
-import {useEffect, useState} from "react";
-import api from "../../utils/api";
+import {useContext} from "react";
 import Card from "../Card/Card";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 
-export default function Main({onEditProfile, onEditAvatar, onAddPlace, onCardClick}) {
-  const [cards, setCards] = useState([])
-  const [user, setUser] = useState({})
-
-  useEffect(() => {
-    Promise.all([api.getUserProfile(), api.getInitialCards()])
-      .then(([profile, cards]) => {
-        setUser({
-          userName: profile.name,
-          userDescription: profile.about,
-          userAvatar: profile.avatar
-        })
-
-        cards.forEach(l => l._id === profile._id)
-        setCards(cards)
-      }).catch(err => console.log(`Ошибка ${err}`));
-  },[])
+export default function Main({onEditProfile, onEditAvatar, onAddPlace, onCardClick, onCardLikeClick, onCardDeleteClick, cards}) {
+  const currentUser = useContext(CurrentUserContext)
 
   return (
     <main className="content">
@@ -30,17 +15,17 @@ export default function Main({onEditProfile, onEditAvatar, onAddPlace, onCardCli
           aria-label="Редактировать"
           onClick={onEditAvatar}
         >
-          <img className="avatar" src={user.userAvatar} alt="Фото профиля"/>
+          <img className="avatar" src={currentUser.avatar} alt="Фото профиля"/>
         </button>
         <div className="profile__info">
-          <h1 className="profile__name">{user.userName}</h1>
+          <h1 className="profile__name">{currentUser.name}</h1>
           <button
             className="profile__button-edit"
             type="button"
             aria-label="Редактировать"
             onClick={onEditProfile}
           />
-          <p className="profile__about">{user.userDescription}</p>
+          <p className="profile__about">{currentUser.about}</p>
         </div>
         <button
           className="profile__button-add"
@@ -53,7 +38,7 @@ export default function Main({onEditProfile, onEditAvatar, onAddPlace, onCardCli
           {cards.map(data => {
             return (
               <div key={data._id}>
-                <Card card={data} onCardClick={() => onCardClick(data)}/>
+                <Card card={data} onCardClick={onCardClick} onCardLikeClick={onCardLikeClick} onCardDeleteClick={onCardDeleteClick}/>
               </div>
             )
           })}

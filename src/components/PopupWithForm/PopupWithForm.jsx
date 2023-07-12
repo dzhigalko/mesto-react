@@ -1,4 +1,4 @@
-export default function PopupWithForm({name, title, titleButton, children, isOpen, onClose}) {
+export default function PopupWithForm({name, title, titleButton, children, isOpen, onClose, onSubmit}) {
   return (
     <div className={`popup popup_type_${name} ${isOpen && 'popup_opened'}`}>
       <div className="popup__container">
@@ -13,11 +13,12 @@ export default function PopupWithForm({name, title, titleButton, children, isOpe
           className="popup__form popup__profile-form"
           name="profile"
           noValidate=""
+          onSubmit={onSubmit}
         >
           {children}
           <button
             disabled=""
-            className="popup__button popup__button_disabled"
+            className="popup__button"
             type="submit"
             aria-label="Сохранить"
           >
