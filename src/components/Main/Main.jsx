@@ -35,13 +35,17 @@ export default function Main({onEditProfile, onEditAvatar, onAddPlace, onCardCli
         />
       </section>
       <section className="photos">
-          {cards.map(data => {
-            return (
-              <div key={data._id}>
-                <Card card={data} onCardClick={onCardClick} onCardLikeClick={onCardLikeClick} onCardDeleteClick={onCardDeleteClick}/>
-              </div>
-            )
-          })}
+        {cards.map(data => {
+          return (
+            <Card
+              key={data._id}
+              card={data}
+              onCardClick={onCardClick}
+              onCardLikeClick={onCardLikeClick}
+              onCardDeleteClick={onCardDeleteClick}
+            />
+          )
+        })}
       </section>
     </main>
   )

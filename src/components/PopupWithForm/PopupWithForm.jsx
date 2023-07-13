@@ -10,14 +10,12 @@ export default function PopupWithForm({name, title, titleButton, children, isOpe
           onClick={onClose}
         />
         <form
-          className="popup__form popup__profile-form"
-          name="profile"
-          noValidate=""
+          className="popup__form"
+          name={name}
           onSubmit={onSubmit}
         >
           {children}
           <button
-            disabled=""
             className="popup__button"
             type="submit"
             aria-label="Сохранить"
